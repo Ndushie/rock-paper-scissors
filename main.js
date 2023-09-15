@@ -48,8 +48,26 @@ function getComputerChoice() {
 
     // a loop that will repeat the game for only 5 rounds
     for (roundNumber = 1; roundNumber <= 5; roundNumber++) {
-        // get the player's choice
-        const playerSelection = prompt(`Choose your weapon for round ${roundNumber}`)
+        let playerSelection = "";
+
+        //Keep asking for player's choice until a valid choice is provided
+        while (true) {
+            playerSelection = prompt(`Choose your weapon for round ${roundNumber}.\nMake sure you don't enter invalid strings or computer wins that round!`);
+
+            // Check if the user canceled the prompt of didn't enter anything
+            if (playerSelection === null) {
+            // User canceled the prompt
+                alert ("Game canceled. See you next time!");
+                return; //Exit the game
+            } else if (playerSelection.trim() === "") {
+                // user didn't enter anything
+                alert("Please enter a valid choice.");
+            } else {
+                // valid choice
+                break;
+            }
+        }
+    
 
         // get and display computer's choice
         const computerChoice = getComputerChoice();
